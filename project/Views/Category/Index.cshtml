@@ -1,0 +1,32 @@
+﻿@model IEnumerable<project.EF.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "../Shared/_Base.cshtml";
+}
+
+
+
+    <table class="u-full-width">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>@category.Description</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+

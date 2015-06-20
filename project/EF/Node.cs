@@ -11,5 +11,15 @@ namespace project.EF
         public Body Body { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime ChangedTime { get; set; }
+        public long Hit { get; set; }
+        public Category Category { get; set; }
+    }
+
+    public class Category
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public virtual Category ParentCategory { get; set; }
     }
 }

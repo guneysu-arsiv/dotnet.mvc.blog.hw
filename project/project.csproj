@@ -104,7 +104,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NodeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="EF\Blog.cs" />
     <Compile Include="EF\Body.cs" />
     <Compile Include="EF\Model.cs" />
@@ -122,9 +125,12 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <None Include="Views\Admin\Index.cshtml" />
+    <None Include="Views\Category\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Skeleton.Master" />
-    <Content Include="Views\Shared\_Skeleton.cshtml" />
+    <Content Include="Views\Shared\_Base.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,7 +141,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Node\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506200825292_r0.resx">
