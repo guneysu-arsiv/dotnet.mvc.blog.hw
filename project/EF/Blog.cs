@@ -1,6 +1,6 @@
 namespace project.EF
 {
-    class Blog : Node
+    public class Blog : Node
     {
 
     }

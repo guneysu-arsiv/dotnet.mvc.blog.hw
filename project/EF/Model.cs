@@ -1,3 +1,4 @@
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Web.UI;
 
 namespace project.EF
@@ -14,7 +15,7 @@ namespace project.EF
         // If you wish to target a different database and/or database provider, modify the 'Model' 
         // connection string in the application configuration file.
         public Model()
-            : base("name=Model")
+            : base("name=BlogDb")
         {
         }
 
@@ -22,7 +23,12 @@ namespace project.EF
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
-        public virtual DbSet<Blog> BlogPosts { get; set; }
+        public virtual DbSet<Blog> Posts { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 
     //public class MyEntity
