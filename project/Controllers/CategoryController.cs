@@ -57,5 +57,14 @@ namespace project.Controllers
         {
             return View("Edit", new Category());
         }
+
+
+        // POST: Category
+        public ActionResult Delete(int id)
+        {
+            _db.Categories.Remove(_db.Categories.Find(id));
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

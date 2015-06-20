@@ -14,6 +14,7 @@
         <tr>
             <th class="three columns">Name</th>
             <th class="seven columns">Description</th>
+            <th class="one column">#</th>
         </tr>
     </thead>
 
@@ -21,10 +22,17 @@
 
         @foreach (var category in Model)
         {
-        <tr>
-            <td class="three columns"> @Html.ActionLink(@category.Name, String.Format("Display/{0}", category.ID))</td>
-            <td class="seven columns">@category.Description</td>
-        </tr>
+            <tr>
+                <td class="three columns"> @Html.ActionLink(@category.Name, String.Format("Display/{0}", category.ID))</td>
+                <td class="seven columns">@category.Description</td>
+                <td>
+                    @using ( Html.BeginForm( String.Format("Delete/{0}", category.ID), "Category")){
+                    <input type="submit" value="Delete"
+                           onclick="return confirm('@String.Format("{0} Silienecek.", category.Name) Emin Misin?') && confirm('Son kararın mı?') && confirm('Bir daha sormam bak.')" />
+                    }
+                </td>
+
+            </tr>
         }
     </tbody>
 
