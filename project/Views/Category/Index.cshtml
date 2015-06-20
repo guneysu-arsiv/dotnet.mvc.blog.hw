@@ -2,31 +2,29 @@
 
 @{
     ViewBag.Title = "Categories";
-    Layout = "../Shared/_Base.cshtml";
+    Layout = "../Shared/_Category.cshtml";
 }
 
+<table class="ten columns">
 
+    <thead>
+        <tr>
+            <th class="three columns">Name</th>
+            <th class="seven columns">Description</th>
+        </tr>
+    </thead>
 
-    <table class="u-full-width">
+    <tbody>
 
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
+        @foreach (var category in Model)
+        {
+        <tr>
+            <td class="three columns">@category.Name</td>
+            <td class="seven columns">@category.Description</td>
+        </tr>
+        }
+    </tbody>
 
-        <tbody>
-
-            @foreach (var category in Model)
-            {
-                <tr>
-                    <td>@category.Name</td>
-                    <td>@category.Description</td>
-                </tr>
-            }
-        </tbody>
-
-    </table>
+</table>
 
 
