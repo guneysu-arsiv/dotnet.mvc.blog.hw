@@ -1,8 +1,21 @@
 ﻿@model project.EF.Category
 
 @{
+    
+    
+    if (String.IsNullOrEmpty(Model.Name))
+    {
+        ViewBag.Title = "Create New Category";
+        ViewBag.ActionName = "Save";
+    }
+    else
+    {
+        ViewBag.Title = String.Format("Displaying {0}", Model.Name);
+        ViewBag.ActionName = "Update";
+    }
+    
     ViewBag.Title = String.Format("Displaying {0}", Model.Name);
-    Layout = "../Shared/_Category.cshtml";
+    Layout = "../Shared/_Base.cshtml";
 }
 
 <h5>@Model.Name</h5>
@@ -21,7 +34,7 @@
     </table>
     
     @Html.HiddenFor(x => x.ID)
-    <input type="submit" value="Update" />
+    <input type="submit" value=@ViewBag.ActionName />
 
 }
 

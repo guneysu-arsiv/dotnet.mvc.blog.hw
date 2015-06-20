@@ -1,0 +1,53 @@
+﻿@model IEnumerable<project.EF.Post>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "../Shared/_Admin.cshtml";
+}
+
+
+<div>@Html.ActionLink("Yeni", "New")</div>
+
+<table class="ten columns">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Published</th>
+            <th>Created</th>
+            <th>Changed</th>
+            <th>Hit</th>
+            <th>Category</th>
+            <th>#</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(post.Title, String.Format("Display/{0}", post.ID))</td>
+                <td>@post.Published</td>
+                <td>@post.CreatedTime</td>
+                <td>@post.ChangedTime</td>
+                <td>@post.Hit</td>
+
+                <td>
+                    Kategori Link
+                    @*@Html.ActionLink(post.Category.Name, String.Format("/Category/Display/{0}", post.Category.ID))*@
+                </td>
+
+                <td>
+                    @using (Html.BeginForm(String.Format("Delete/{0}", post.ID), "Node"))
+                    {
+                        <input type="submit" value="Delete"
+                               onclick="return confirm('@String.Format("{0} Silienecek.", post.Title) Emin Misin?') && confirm('Son kararın mı?') && confirm('Bir daha sormam bak.')" />
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,15 @@
+﻿@model project.Models.Post
+
+@{
+    ViewBag.Title = String.Format("Displaying {0}", Model.Title);
+    Layout = "../Shared/_Base.cshtml";
+}
+
+<h5>@Model.Title</h5>
+<div>Created on @Model.CreatedTime</div>
+<div class="content">
+    @Model.Body
+</div>
+
+
+@Html.ActionLink("Edit", String.Format("{0}/{1}", "Edit", Model.ID))

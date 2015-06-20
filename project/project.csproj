@@ -104,7 +104,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NodeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="EF\Blog.cs" />
+    <Compile Include="EF\Post.cs" />
     <Compile Include="EF\Body.cs" />
     <Compile Include="EF\Model.cs" />
     <Compile Include="EF\Node.cs" />
@@ -116,22 +116,25 @@
       <DependentUpon>201506200825292_r0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <None Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Node\Display.cshtml" />
+    <None Include="Views\Node\Index.cshtml" />
+    <None Include="Views\Node\Edit.cshtml" />
     <None Include="Views\Category\Display.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Shared\_PostEdit.cshtml" />
     <None Include="Views\Shared\_CategoryEdit.cshtml" />
     <None Include="Views\Category\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Base.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Shared\Skeleton.Master" />
-    <Content Include="Views\Shared\_Category.cshtml" />
-    <Content Include="Views\Shared\_Node.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -141,8 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Node\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

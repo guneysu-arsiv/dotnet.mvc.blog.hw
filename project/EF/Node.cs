@@ -8,11 +8,11 @@ namespace project.EF
         public string Title { get; set; }
         public bool Published { get; set; }
         public bool Sticky { get; set; }
-        public Body Body { get; set; }
+        public virtual Body Body { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime ChangedTime { get; set; }
         public long Hit { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 
     public class Category

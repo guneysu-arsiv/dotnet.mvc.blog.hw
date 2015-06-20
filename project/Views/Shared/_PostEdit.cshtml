@@ -1,0 +1,45 @@
+﻿@model project.Models.Post
+
+@{
+    
+    if (String.IsNullOrEmpty(Model.Title))
+    {
+        ViewBag.Title = "Create New Post";
+        ViewBag.ActionName = "Save";
+
+    }
+    else
+    {
+        ViewBag.Title = String.Format("Displaying {0}", Model.Title);
+        ViewBag.ActionName = "Update";
+
+    }
+    
+    Layout = "../Shared/_Base.cshtml";
+}
+
+<h5>@Model.Title</h5>
+
+@using (Html.BeginForm("Update", "Node"))
+{
+    @Html.HiddenFor(x => x.ID)
+
+    <strong>Title</strong>
+    <div>
+    @Html.TextBoxFor(x => x.Title)    
+    </div>
+    
+    <hr />
+
+    <strong>Body</strong>
+    <div>
+        @Html.TextAreaFor(x => x.Body)
+    </div>
+    <hr />
+
+    <input type="submit" value=@ViewBag.ActionName />
+
+}
+
+
+@RenderBody()

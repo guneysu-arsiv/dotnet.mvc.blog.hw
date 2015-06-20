@@ -45,16 +45,23 @@
 
     <div class="container">
 
-        <div class="">
-            <h1 class="remove-bottom" style="margin-top: 40px">Ahmed Şeref GÜNEYSU | Blog</h1>
+        <div class="sixteen columns">
+            <a href="/">
+                <h3 class="remove-bottom" style="margin-top: 40px">Ahmed Şeref GÜNEYSU | Blog</h3>
+            </a>
             <h6>Kaliteli Yazılım Hakkında</h6>
-            <hr />
+            <hr/>
         </div>
 
         <div class="u-max-full-width">
             @RenderBody()
         </div>
 
+
+
+        <div class="offset-by-eight one-third column">
+            @RenderPage("../Shared/_Navigation.cshtml")
+        </div>
 
 
 
