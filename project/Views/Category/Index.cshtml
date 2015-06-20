@@ -19,7 +19,7 @@
         @foreach (var category in Model)
         {
         <tr>
-            <td class="three columns">@category.Name</td>
+            <td class="three columns"> @Html.ActionLink(@category.Name, String.Format("Display/{0}", category.ID))</td>
             <td class="seven columns">@category.Description</td>
         </tr>
         }

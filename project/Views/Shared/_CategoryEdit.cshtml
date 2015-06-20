@@ -1,0 +1,28 @@
+﻿@model project.EF.Category
+
+@{
+    ViewBag.Title = String.Format("Displaying {0}", Model.Name);
+    Layout = "../Shared/_Category.cshtml";
+}
+
+<h5>@Model.Name</h5>
+
+@using (Html.BeginForm("Update", "Category"))
+{
+    <table>
+        <tr>
+            <td><strong>Name</strong></td>
+            <td>@Html.TextBoxFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td><strong>Description</strong></td>
+            <td>@Html.TextBoxFor(x => x.Description)</td>
+        </tr>
+    </table>
+    
+    @Html.HiddenFor(x => x.ID)
+    <input type="submit" value="Update" />
+
+}
+
+@RenderBody()

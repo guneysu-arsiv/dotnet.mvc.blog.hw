@@ -1,0 +1,24 @@
+﻿@model project.EF.Category
+
+@{
+    ViewBag.Title = String.Format("Displaying {0}", Model.Name);
+    Layout = "../Shared/_Category.cshtml";
+}
+
+<h5>@Model.Name</h5>
+
+
+<table>
+    <tr>
+        <td><strong>Name</strong></td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td><strong>Description</strong></td>
+        <td>@Model.Description</td>
+    </tr>
+</table>
+
+
+
+@Html.ActionLink("Edit", String.Format("{0}/{1}", "Edit", Model.ID))
