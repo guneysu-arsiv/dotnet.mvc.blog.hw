@@ -32,11 +32,30 @@ namespace project.Controllers
 
         public ActionResult Update(Category category)
         {
-            var original = _db.Categories.Find(category.ID);
-            original.Name = category.Name;
-            original.Description = category.Description;
+            Category updatedOrNew;
+            if (category.ID == 0)
+            {
+                updatedOrNew = new Category()
+                {
+                    Name = category.Name,
+                    Description = category.Description
+                };
+                _db.Categories.Add(updatedOrNew);
+            }
+            else
+            {
+                updatedOrNew = _db.Categories.Find(category.ID);
+                updatedOrNew.Name = category.Name;
+                updatedOrNew.Description = category.Description;
+            }
+
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult New()
+        {
+            return View("Edit", new Category());
         }
     }
 }
