@@ -20,9 +20,9 @@
 
     <!-- CSS
   ================================================== -->
-    <link href="<%=this.ResolveUrl("~/Content/Skeleton/base.css")%>" rel="stylesheet" type="text/css">
+    <link href="<%=this.ResolveUrl("~/Content/Skeleton/normalize.css")%>" rel="stylesheet" type="text/css">
     <link href="<%=this.ResolveUrl("~/Content/Skeleton/skeleton.css")%>" rel="stylesheet" type="text/css">
-    <link href="<%=this.ResolveUrl("~/Content/Skeleton/layout.css")%>" rel="stylesheet" type="text/css">    
+    
 
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
