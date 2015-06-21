@@ -19,6 +19,7 @@ namespace project.Controllers
                     new Models.Post()
                     {
                         Summary = post.Body.Summary,
+                        CategoryId = post.Category.ID,
                         Category = _db.Categories.Find(post.Category.ID).Name,
                         ChangedTime = post.ChangedTime,
                         CreatedTime = post.CreatedTime,

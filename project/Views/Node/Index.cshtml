@@ -8,7 +8,7 @@
 
 <div>@Html.ActionLink("Yeni", "New")</div>
 
-<table class="ten columns">
+<table>
 
     <thead>
         <tr>
@@ -36,8 +36,13 @@
                 <td>@post.Hit</td>
 
                 <td>
-                    @Html.ActionLink(post.Category, "Display", "Category", new {id = post.CategoryId} )
-                </td>
+                    @Html.ActionLink(
+                        linkText:post.Category,
+                        actionName:"Display",
+                        controllerName:"Category",
+                        routeValues:new {id = post.CategoryId},
+                        htmlAttributes:null)                        
+            </td>
 
                 <td>
                     @using (Html.BeginForm(String.Format("Delete/{0}", post.ID), "Node"))

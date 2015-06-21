@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using project.EF;
@@ -24,7 +25,12 @@ namespace project.Controllers
 
         public ActionResult New()
         {
-            return View("Edit", new Models.Post());
+            return View(
+                "Edit", 
+                new Models.Post()
+                {
+                    Categories =  _db.Categories.AsEnumerable()
+                });
         }
 
         public ActionResult Edit(int id)
@@ -121,15 +127,28 @@ namespace project.Controllers
         public ActionResult Display(int id)
         {
             var post = _db.Posts.Find(id);
+            IncrementHit(id);
 
             var model = new project.Models.Post()
             {
                 ID = post.ID,
                 Body = post.Body.Value,
                 Title = post.Title,
-                CreatedTime = post.CreatedTime
+                CreatedTime = post.CreatedTime,
+                CategoryId =  post.Category.ID
             };
+
+            
+            
+
             return View(model);
+        }
+
+        public void IncrementHit(int id)
+        {
+            var post = _db.Posts.Find(id);
+            post.Hit++;
+            _db.SaveChanges();
         }
     }
 }
