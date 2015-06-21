@@ -1,4 +1,4 @@
-﻿@model IEnumerable<project.EF.Post>
+﻿@model IEnumerable<project.Models.Post>
 
 @{
     ViewBag.Title = "Admin";
@@ -13,6 +13,7 @@
     <thead>
         <tr>
             <th>Title</th>
+            <th>Summmary</th>
             <th>Published</th>
             <th>Created</th>
             <th>Changed</th>
@@ -28,14 +29,14 @@
         {
             <tr>
                 <td>@Html.ActionLink(post.Title, String.Format("Display/{0}", post.ID))</td>
+                <td>@post.Summary</td>
                 <td>@post.Published</td>
                 <td>@post.CreatedTime</td>
                 <td>@post.ChangedTime</td>
                 <td>@post.Hit</td>
 
                 <td>
-                    Kategori Link
-                    @*@Html.ActionLink(post.Category.Name, String.Format("/Category/Display/{0}", post.Category.ID))*@
+                    @Html.ActionLink(post.Category, "Display", "Category", new {id = post.CategoryId} )
                 </td>
 
                 <td>

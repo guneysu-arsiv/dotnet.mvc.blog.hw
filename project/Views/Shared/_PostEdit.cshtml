@@ -1,7 +1,7 @@
 ﻿@model project.Models.Post
 
 @{
-    
+
     if (String.IsNullOrEmpty(Model.Title))
     {
         ViewBag.Title = "Create New Post";
@@ -14,7 +14,7 @@
         ViewBag.ActionName = "Update";
 
     }
-    
+
     Layout = "../Shared/_Base.cshtml";
 }
 
@@ -25,16 +25,45 @@
     @Html.HiddenFor(x => x.ID)
 
     <strong>Title</strong>
-    <div>
-    @Html.TextBoxFor(x => x.Title)    
+    <div class="u-full-width">
+        @Html.TextBoxFor(x => x.Title)
     </div>
-    
+
+    <strong>Category</strong>
+    <div>
+
+        @*@Html.DropDownList(
+            "Category",
+            new SelectList(
+                Model.Categories.Select(x => new {Value = x.ID, Text = x.Name}),
+                "Value",
+                "Text"
+                ))*@
+        @Html.DropDownListFor(
+    x => x.CategoryId,
+    new SelectList(Model.Categories, "ID", "Name")
+)
+    </div>
     <hr />
 
+    <strong>Changed Date</strong>
+    <div class="u-full-width">
+        @Html.EditorFor(x => x.ChangedTime)
+        <span style="color: red;">Bu tarih alanı 1/1/0001 12:00:00 AM olarak gittiği için hata alıyorum.
+        Bu yüzden buradan gelen tarih/saat alanını modele gönderiyorum fakat veri tabanına gönder(e)miyorum</span>
+    </div>
+    
+    <strong>Summary</strong>
+    <div class="u-full-width">
+        @Html.TextAreaFor(x => x.Summary)
+    </div>
+    
     <strong>Body</strong>
-    <div>
+    <div class="u-full-width">
         @Html.TextAreaFor(x => x.Body)
     </div>
+    
+    
     <hr />
 
     <input type="submit" value=@ViewBag.ActionName />

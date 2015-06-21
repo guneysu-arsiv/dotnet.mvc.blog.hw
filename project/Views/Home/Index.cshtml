@@ -1,8 +1,28 @@
-﻿@model dynamic
+﻿@model IEnumerable<project.Models.Post>
 
 @{
-    ViewBag.Title = "Ahmed Şeref GÜNEYSU | Blog";
+    ViewBag.Title = "Admin";
     Layout = "../Shared/_Base.cshtml";
 }
 
-<h3>Anasayfa</h3><hr/>
+
+<div>
+
+    @foreach (var post in Model)
+    {
+
+        <h3> @Html.ActionLink(post.Title, String.Format("Display/{0}", post.ID)) </h3>
+        
+        
+        <div class="date">@post.CreatedTime tarihinde yayınlandı</div>
+        <span>@post.Hit defa okundu</span>
+        
+        <div class="content">
+            @post.Summary    
+        </div>
+        <hr/>
+        
+        
+        
+    }
+</div>

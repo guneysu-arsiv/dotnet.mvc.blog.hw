@@ -9,10 +9,12 @@ namespace project.Controllers
 {
     public class AdminController : Controller
     {
+        private Context _db = new Context();
+
         // GET: Admin
         public ActionResult Index()
         {
-            throw new NotImplementedException();
+            return View();
         }
     }
 }

@@ -15,8 +15,12 @@ namespace project.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View(_db.Posts.AsEnumerable());
+            var posts = Helpers.getPosts();
+
+            return View(posts);
         }
+
+
 
         public ActionResult New()
         {
@@ -30,7 +34,9 @@ namespace project.Controllers
             {
                 ID = post.ID,
                 Body = post.Body.Value,
-                Title = post.Title
+                Summary = post.Body.Summary,
+                Title = post.Title,
+                Categories = _db.Categories.AsEnumerable()
             };
 
             return View("Edit", model);
@@ -45,11 +51,10 @@ namespace project.Controllers
 
             if (post.ID == 0)
             {
-
                 updatedOrNewBody = new Body()
                 {
                     Value = post.Body,
-                    Summary = post.Body.Length < 160 ? post.Body : post.Body.Substring(0, 160)
+                    Summary = post.Summary
                 };
 
 
@@ -62,7 +67,8 @@ namespace project.Controllers
                     Body = updatedOrNewBody,
                     Title = post.Title,
                     ChangedTime = DateTime.Now,
-                    CreatedTime = DateTime.Now
+                    CreatedTime = DateTime.Now,
+                    Category =  _db.Categories.Find(post.CategoryId)
                 };
 
                 _db.Posts.Add(updatedOrNew);
@@ -75,10 +81,11 @@ namespace project.Controllers
 
                 updatedOrNewBody = _db.Bodies.Find(updatedOrNew.Body.ID);
                 updatedOrNewBody.Value = post.Body;
-                updatedOrNewBody.Summary = post.Body.Length < 160 ? post.Body : post.Body.Substring(0, 160);
+                updatedOrNewBody.Summary = post.Summary;
 
                 updatedOrNew.Title = post.Title;
                 updatedOrNew.Body = updatedOrNewBody;
+                updatedOrNew.Category = _db.Categories.Find(post.CategoryId);
 
             }
 
@@ -100,8 +107,14 @@ namespace project.Controllers
 
         public ActionResult Delete(int id)
         {
-            _db.Posts.Remove(_db.Posts.Find(id));
+            var post = _db.Posts.Find(id);
+            var body = _db.Bodies.Find(post.Body.ID);
+            
+            _db.Posts.Remove(post);
+            _db.Bodies.Remove(body);
+
             _db.SaveChanges();
+
             return RedirectToAction("Index");
 
         }
@@ -112,7 +125,7 @@ namespace project.Controllers
             var model = new project.Models.Post()
             {
                 ID = post.ID,
-                Body = "adasd",
+                Body = post.Body.Value,
                 Title = post.Title,
                 CreatedTime = post.CreatedTime
             };
